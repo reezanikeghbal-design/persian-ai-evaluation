@@ -1,0 +1,29 @@
+# Virtual environment
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Local databases
+*.db
+*.sqlite3
+data/
+
+# Experiment tracking
+mlruns/
+
+# Generated benchmark artifacts
+artifacts/
+
+# System files
+.DS_Store
+Thumbs.db

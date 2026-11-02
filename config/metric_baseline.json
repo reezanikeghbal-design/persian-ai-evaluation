@@ -1,0 +1,6 @@
+{
+  "description": "Deterministic unit-fixture baseline; this is not a model-quality benchmark.",
+  "recall_at_k": 1.0,
+  "mrr": 1.0,
+  "minimum_allowed": 1.0
+}

@@ -1,0 +1,14 @@
+{
+  "experiment_id": 1,
+  "provider": "mock",
+  "model": "mock-context-extractive-v1",
+  "embedding_model": "hashing",
+  "total_questions": 51,
+  "average_latency_ms": 0.0005686274509803922,
+  "answer_relevancy": 0.5257635610576787,
+  "faithfulness": 0.9956917253907172,
+  "hallucination_rate": 0.0,
+  "recall_at_k": 0.7254901960784313,
+  "mrr": 0.8104575163398693,
+  "estimated_cost_usd": 0.0
+}

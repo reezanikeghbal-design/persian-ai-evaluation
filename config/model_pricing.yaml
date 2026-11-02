@@ -1,0 +1,8 @@
+# USD per 1 million tokens. Unknown models intentionally have no estimate.
+models:
+  gpt-4o-mini:
+    input_per_1m: 0.15
+    output_per_1m: 0.60
+  gemini-2.0-flash:
+    input_per_1m: 0.10
+    output_per_1m: 0.40

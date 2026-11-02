@@ -1,0 +1,13 @@
+[project]
+name = "persian-ai-evaluation"
+version = "0.1.0"
+description = "A lightweight Persian LLM and RAG evaluation benchmark"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
