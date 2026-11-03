@@ -4,6 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     app_env: str = "development"
+    api_key: str = ""
     database_url: str = "sqlite:///./data/evaluation.db"
     llm_provider: str = "mock"
     openai_api_key: str | None = None
