@@ -529,11 +529,11 @@ persian-ai-evaluation/
 │
 ├── config/               # Metric baseline and model pricing
 ├── dashboard/            # Streamlit analytics dashboard
-├── datasets/              # Golden dataset and sample documents
-├── examples/              # Example benchmark outputs
-├── scripts/               # Dataset and benchmark CLI utilities
-├── tests/                 # Automated tests
-├── .github/workflows/     # GitHub Actions CI
+├── datasets/             # Golden dataset and sample documents
+├── examples/             # Example benchmark outputs
+├── scripts/              # Dataset and benchmark CLI utilities
+├── tests/                # Automated tests
+├── .github/workflows/    # GitHub Actions CI
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
