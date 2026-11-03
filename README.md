@@ -1,5 +1,11 @@
 # Persian AI Evaluation & Benchmark Platform
 
+![CI](https://github.com/reezanikeghbal-design/persian-ai-evaluation/actions/workflows/ci.yml/badge.svg)
+![Python](https://img.shields.io/badge/python-3.11+-blue.svg)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![Docker](https://img.shields.io/badge/docker-compose-2496ED?logo=docker&logoColor=white)
+![License](https://img.shields.io/github/license/reezanikeghbal-design/persian-ai-evaluation)
+
 A lightweight, local-first platform for evaluating LLM and Retrieval-Augmented Generation (RAG) workflows on Persian-language questions.
 
 This project demonstrates a practical evaluation pipeline covering Persian text normalization, dataset validation, document chunking, vector retrieval, LLM provider abstraction, evaluation metrics, experiment persistence, API development, analytics, automated testing, and basic MLOps integration.
@@ -97,11 +103,10 @@ For semantic retrieval, Sentence Transformers can be installed as an optional de
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/persian-ai-evaluation.git
+git clone https://github.com/reezanikeghbal-design/persian-ai-evaluation.git
 cd persian-ai-evaluation
 ```
 
-Replace `YOUR_USERNAME` with your GitHub username.
 
 ### 2. Create a virtual environment
 
