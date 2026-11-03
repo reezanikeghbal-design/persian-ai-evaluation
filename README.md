@@ -149,7 +149,7 @@ cp .env.example .env
 Copy-Item .env.example .env
 ```
 
-The default configuration uses the Mock provider and a local SQLite database. Keep credentials in environment variables and never commit your `.env` file or API keys.
+The default configuration uses the Mock provider and a local SQLite database. Set `API_KEY` in `.env` to a long, random secret before starting the API. Keep credentials in environment variables and never commit your `.env` file or API keys.
 
 ### 5. Validate the dataset and run tests
 
@@ -238,7 +238,7 @@ curl -X POST http://127.0.0.1:8000/experiments/run \\
   -d '{"provider":"mock","embedding_model":"hashing","top_k":3}'
 ```
 
-Benchmark execution is currently synchronous. Execution errors are returned as HTTP 400 responses. The API is intended for local experimentation and is not hardened for public production deployment.
+All operational API endpoints require the `X-API-Key` header. The `/health` endpoint remains public for health checks. Set `API_KEY` in `.env` before starting the service; requests without a valid key receive HTTP 401, and an unset server key disables operational endpoints with HTTP 503. Dataset paths supplied to benchmark requests must resolve to files inside the `datasets/` directory. Benchmark execution is currently synchronous. Execution errors are logged server-side and returned with a generic HTTP 400 message. The API is intended for local experimentation and is not hardened for public production deployment.
 
 ## LLM Provider Integration
 
