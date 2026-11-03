@@ -485,9 +485,6 @@ These results demonstrate that the benchmark pipeline executes and persists expe
 
 Run the benchmark locally to generate fresh results under `artifacts/`.
 
-## Screenshots
-
-Screenshots of the dashboard and benchmark results can be added here.
 
 ## Limitations
 
