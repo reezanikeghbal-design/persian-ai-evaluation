@@ -1,9 +1,16 @@
-from fastapi import FastAPI, HTTPException
+import logging
+from pathlib import Path
+
+from fastapi import Depends, FastAPI, HTTPException
 from sqlalchemy import select, func
 from app.core.schemas import BenchmarkRequest
 from app.database.models import Experiment, EvaluationResult, get_session_factory
 from app.benchmark.runner import BenchmarkRunner
 from app.evaluation.dataset import load_jsonl
+from app.core.security import require_api_key
+
+logger = logging.getLogger(__name__)
+DATASET_ROOT = Path('datasets').resolve()
 
 app = FastAPI(title="Persian AI Evaluation API", version="0.1.0", description="Persian LLM/RAG benchmark MVP")
 
@@ -13,30 +20,36 @@ def health():
     return {"status": "ok"}
 
 
-@app.get("/datasets")
+@app.get("/datasets", dependencies=[Depends(require_api_key)])
 def datasets():
     return [{"name": "golden_dataset", "path": "datasets/golden_dataset.jsonl",
              "records": len(load_jsonl("datasets/golden_dataset.jsonl"))}]
 
 
-@app.get("/models")
+@app.get("/models", dependencies=[Depends(require_api_key)])
 def models():
     return [{"provider": "mock", "model": "mock-context-extractive-v1"},
             {"provider": "openai-compatible", "model": "configured by OPENAI_MODEL"},
             {"provider": "gemini", "model": "configured by GEMINI_MODEL"}]
 
 
-@app.post("/experiments/run")
+@app.post("/experiments/run", dependencies=[Depends(require_api_key)])
 def run_experiment(request: BenchmarkRequest):
     try:
-        return BenchmarkRunner().run(request.dataset_path, request.provider, request.model,
+        dataset_path = Path(request.dataset_path).resolve()
+        if not dataset_path.is_relative_to(DATASET_ROOT) or not dataset_path.is_file():
+            raise HTTPException(status_code=400, detail="Dataset path must reference a file inside the datasets directory")
+        return BenchmarkRunner().run(str(dataset_path), request.provider, request.model,
                                      request.embedding_model, request.chunk_size,
                                      request.chunk_overlap, request.top_k)
+    except HTTPException:
+        raise
     except Exception as exc:
-        raise HTTPException(status_code=400, detail=str(exc)) from exc
+        logger.exception("Benchmark execution failed")
+        raise HTTPException(status_code=400, detail="Benchmark execution failed. Check server logs for details.") from exc
 
 
-@app.get("/experiments")
+@app.get("/experiments", dependencies=[Depends(require_api_key)])
 def experiments():
     with get_session_factory()() as session:
         items = session.scalars(select(Experiment).order_by(Experiment.id.desc())).all()
@@ -48,7 +61,7 @@ def experiments():
                  "estimated_cost_usd": x.estimated_cost_usd} for x in items]
 
 
-@app.get("/experiments/{experiment_id}")
+@app.get("/experiments/{experiment_id}", dependencies=[Depends(require_api_key)])
 def experiment_detail(experiment_id: int):
     with get_session_factory()() as session:
         item = session.get(Experiment, experiment_id)
@@ -60,7 +73,7 @@ def experiment_detail(experiment_id: int):
                 "recall_at_k": item.recall_at_k, "mrr": item.mrr}
 
 
-@app.get("/results/{experiment_id}")
+@app.get("/results/{experiment_id}", dependencies=[Depends(require_api_key)])
 def results(experiment_id: int):
     with get_session_factory()() as session:
         rows = session.scalars(select(EvaluationResult).where(EvaluationResult.experiment_id == experiment_id)).all()
@@ -71,7 +84,7 @@ def results(experiment_id: int):
                  "mrr": r.mrr, "latency_ms": r.latency_ms} for r in rows]
 
 
-@app.get("/metrics/summary")
+@app.get("/metrics/summary", dependencies=[Depends(require_api_key)])
 def metrics_summary():
     with get_session_factory()() as session:
         count, avg_rel, avg_faith, avg_latency = session.query(
