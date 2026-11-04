@@ -18,6 +18,22 @@ Evaluating Persian-language AI applications involves language-specific and syste
 
 This project provides a small Persian golden dataset and a repeatable local workflow to help developers inspect these behaviors, compare configurations, and identify areas for improvement.
 
+## Dashboard Preview
+
+The following illustrative UI mockups show the platform's main evaluation workflows. Metric values shown in the experiment preview are placeholders for visual demonstration, not measured benchmark results.
+
+### Evaluation dashboard
+
+![Illustrative Persian AI evaluation dashboard](docs/images/persian-eval-dashboard.svg)
+
+### Experiment metrics
+
+![Illustrative experiment metrics view](docs/images/persian-eval-metrics.svg)
+
+### Persian golden dataset
+
+![Illustrative Persian evaluation dataset](docs/images/persian-eval-dataset.svg)
+
 ## Key Features
 
 - **Persian text processing:** Normalize Persian text and validate JSONL evaluation datasets.
