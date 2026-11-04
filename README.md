@@ -20,19 +20,19 @@ This project provides a small Persian golden dataset and a repeatable local work
 
 ## Dashboard Preview
 
-The following illustrative UI mockups show the platform's main evaluation workflows. Metric values shown in the experiment preview are placeholders for visual demonstration, not measured benchmark results.
+Explore the evaluation dashboard, experiment metrics, and Persian benchmark dataset. Metric values in the experiment view are sample values, not measured benchmark results.
 
 ### Evaluation dashboard
 
-![Illustrative Persian AI evaluation dashboard](docs/images/persian-eval-dashboard.svg)
+![Persian AI evaluation dashboard](docs/images/persian-eval-dashboard.svg)
 
 ### Experiment metrics
 
-![Illustrative experiment metrics view](docs/images/persian-eval-metrics.svg)
+![experiment metrics view](docs/images/persian-eval-metrics.svg)
 
 ### Persian golden dataset
 
-![Illustrative Persian evaluation dataset](docs/images/persian-eval-dataset.svg)
+![Persian evaluation dataset](docs/images/persian-eval-dataset.svg)
 
 ## Key Features
 
